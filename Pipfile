@@ -10,6 +10,7 @@ django-ckeditor = "*"
 gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
+django-ckedit = "*"
 
 [dev-packages]
 
