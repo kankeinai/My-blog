@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 django = "==3.1"
+django-mdeditor = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

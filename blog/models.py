@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
@@ -11,7 +12,7 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
     details = models.CharField(max_length=200)
-    text = models.TextField()
+    text = RichTextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -21,5 +22,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-# Create your models here.

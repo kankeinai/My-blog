@@ -5,7 +5,6 @@
   }
   header {
     border-bottom: 0.5px solid #999;
-    margin-bottom: 2rem;
     display: flex;
     background-color: #2c93c3;
     margin-top: 0;
@@ -19,7 +18,7 @@ a.logo{
   color:#fff;
 }
 a.logo:hover{
-  
+  text-decoration: none;
 }
 .date {
   padding-top: 20px;
@@ -30,10 +29,9 @@ a.logo:hover{
   float:right;
 }
 .post-entry{
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40px;
   padding-left: 40px;
-  padding-right: 40px;
+  padding-right: 40px; 
 }
 a.title{
   padding-top: 20px;
@@ -84,4 +82,30 @@ a.title:hover{
 .title-edit{
   width:75%;
   float:left;
+}
+
+.save.btn.btn-default{
+  text-align: center;
+  background: transparent;
+  width:150px;
+  color: #222;
+  height:40px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+.save.btn.btn-default:hover {
+  background: transparent;
+  border-color: #2c93c3;
+}
+
+.right_part{
+  height: 100%;
+  float:right;
+  width: 30%;
+  border-left: 1px solid rgb(207, 205, 205);
+}
+.left_part{
+  height: 100%;
+  float:left;
+  width: 70%;
 }
