@@ -11,7 +11,7 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
     details = models.CharField(max_length=200)
-    body = models.TextField()
+    text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 

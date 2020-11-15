@@ -4,6 +4,7 @@
 {% block content %}
   <div class="post-entry">
     <h2>{{ object.title }}</h2>
-    <p>{{ object.body }}</p>
+    <p>{{ object.text }}</p>
+    <h4>published: {{ post.published_date }}</h4>
   </div>
 {% endblock content %}
