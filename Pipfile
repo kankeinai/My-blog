@@ -7,6 +7,9 @@ name = "pypi"
 django = "==3.1"
 django-mdeditor = "*"
 django-ckeditor = "*"
+gunicorn = "*"
+dj-database-url = "*"
+whitenoise = "*"
 
 [dev-packages]
 
