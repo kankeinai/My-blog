@@ -21,14 +21,19 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_)^aw0gdrcgb1spfi32wctobus+&2-s*^+g&sf+h&fg^8$w$#q'
-
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', '_)^aw0gdrcgb1spfi32wctobus+&2-s*^+g&sf+h&fg^8$w$#q')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+ALLOWED_HOSTS = ['.example.com']
 
-ALLOWED_HOSTS = []
-
-
+SECURE_HSTS_SECONDS = 31536000
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+#X_FRAME_OPTIONS = 'SAMEORIGIN'
 ROOT_URLCONF = 'my_blog.urls'
 
 TEMPLATES = [
