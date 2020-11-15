@@ -4,35 +4,54 @@
 {% block content %}
 <div class="left_part">
   <div class="post-entry">
-        <ul class="breadcrumbs">
-        <li><a href="/">Home</a></li>
-        {% for slug,name in breadcrumbs %}
-            <li><a href="/category/{{slug}}">{{name}}</a></li>
-        {% endfor %}
-    </ul>
       <div class="row">
-          <div class="title-edit">
-              <div class="title-block">
+             <div class="title-block">
                 <h2><a class='title' href="">{{ post.title }}</a></h2>
-              </div>
-              {% if user.is_authenticated %}
-              <div class="edit">
-                  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-              </div>
-              {% endif %}
-          </div>
-          {% if post.published_date %}
-          <div class="date">
-              published: {{ post.published_date }}
-          </div>
-          {% endif %}
-      </div>
-      <p>{{ post.author|linebreaksbr }}</p>
+              </div> 
+            <div class="admin_tools">
+                <div class="date">
+                    {% if post.published_date %}
+                        {{ post.published_date }}
+                    {% else %}
+                        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                    {% endif %}
+                </div>
+                {% if user.is_authenticated %}
+                <div class="tools">
+                        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
       <p class='content'>{{ post.text|safe }}</p>
+      <p style="float:right">Author: <a href="https://t.me/reikooff">{{ post.author|linebreaksbr }}</a></p></br>
+       <hr>
+      <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+{% for comment in post.comments.all %}
+    {% if user.is_authenticated or comment.approved_comment %}
+    <div class="comment">
+        <div class="date">
+            {{ comment.created_date }}
+            {% if not comment.approved_comment %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+            {% endif %}
+        </div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    <hr>
+    {% endif %}
+{% empty %}
+    <p style="margin-top:20px">No comments here yet :(</p>
+{% endfor %}
+  
   </div>
 </div>
 <div class="right_part">
 
 </div>
+
   
 {% endblock content %}

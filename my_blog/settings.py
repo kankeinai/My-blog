@@ -137,7 +137,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'entities': False,
-        'width': "100%",
+        'width': "80%",
         'height': "100%",
         'entities_greek': False,
         'entities_latin': False,
@@ -189,3 +189,4 @@ CKEDITOR_CONFIGS = {
             ]),
     }
 }
+LOGIN_REDIRECT_URL = '/'

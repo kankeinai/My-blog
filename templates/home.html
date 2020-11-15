@@ -2,10 +2,11 @@
 {% extends 'base.html' %}
  
 {% block content %}
-  {% for post in object_list %}
+  {% for post in posts %}
     <div class="post-entry">
       <h2 ><a class="title", href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
       <p class="content">{{ post.details |linebreaksbr }}</p>
+      <a href="{% url 'post_detail' pk=post.pk %}" class="title">Comments: {{ post.approved_comments.count }}</a>
     </div>
   {% endfor %}
 {% endblock content %}
