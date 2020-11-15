@@ -3,12 +3,22 @@
 <html>
   <head>
     <title>My blog</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@200&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1><a href="{% url 'home' %}">My blog</a></h1>
+      <div class="site_logo">
+        <h1><a class="logo" href="{% url 'home' %}">My blog</a></h1>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="new">
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+      </div>
+      {% endif %}
     </header>
     <div>
       {% block content %}

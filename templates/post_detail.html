@@ -3,8 +3,23 @@
  
 {% block content %}
   <div class="post-entry">
-    <h2>{{ object.title }}</h2>
-    <p>{{ object.text }}</p>
-    <h4>published: {{ post.published_date }}</h4>
+      <div class="row">
+        <div class="title-edit">
+            <div class="title-block">
+              <h2><a class='title' href="">{{ post.title }}</a></h2>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="edit">
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
+            {% endif %}
+        </div>
+        {% if post.published_date %}
+        <div class="date">
+            published: {{ post.published_date }}
+         </div>
+        {% endif %}
+      </div>
+      <p class='content'>{{ post.text|linebreaksbr }}</p>
   </div>
 {% endblock content %}
