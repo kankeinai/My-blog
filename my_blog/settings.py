@@ -24,17 +24,13 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY', '_)^aw0gdrcgb1spfi32wctobus+&2-s*^+g&sf+h&fg^8$w$#q')
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-ALLOWED_HOSTS = ['.example.com', '.localhost', '127.0.0.1', '[::1]']
 
-SECURE_HSTS_SECONDS = 31536000
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+
+ALLOWED_HOSTS = []
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -59,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-#X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 ROOT_URLCONF = 'my_blog.urls'
 
 TEMPLATES = [
@@ -144,8 +140,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'entities': False,
-        'width': "80%",
-        'height': "100%",
+        'width': "auto",
+        'height': "auto",
         'entities_greek': False,
         'entities_latin': False,
         'skin': 'moono',
@@ -196,9 +192,8 @@ CKEDITOR_CONFIGS = {
             ]),
     }
 }
-LOGIN_REDIRECT_URL = '/'
-
 # Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+LOGIN_REDIRECT_URL = '/'
