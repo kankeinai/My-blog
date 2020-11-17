@@ -3,31 +3,44 @@
  
 {% block content %}
 <div class="left_part">
+{% if post.published_date%}
+    <a class="prev" href="/post/{{post.prev_post}}">&#10094;</a>
+    <a class="next post" href="/post/{{post.next_post}}">&#10095;</a>
+{%endif%}
   <div class="post-entry">
       <div class="row">
-             <div class="title-block">
-                <h2><a class='title' href="">{{ post.title }}</a></h2>
-              </div> 
-            <div class="admin_tools">
-                <div class="date">
+      <div class="date">
                     {% if post.published_date %}
                         {{ post.published_date }}
                     {% else %}
                         <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
                     {% endif %}
-                </div>
+                <a href="#bottom" class="title">Comments: {{ post.approved_comments.count }}</a>
+            </div>
+             <div class="title-block">
+                <h2><a class='title' href="">{{ post.title }}</a></h2>
+              </div> 
                 {% if user.is_authenticated %}
                 <div class="tools">
                         <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
-                {% endif %}
-            </div>
+                {%endif%}
         </div>
+        <p class="summary"><span style="font-size:18pt;">Quick summary:</span> {{ post.details|safe }}</p>
       <p class='content'>{{ post.text|safe }}</p>
-      <p style="float:right">Author: <a href="https://t.me/reikooff">{{ post.author|linebreaksbr }}</a></p></br>
+      <div class="row">
+        <div class="views">
+            Views: {{post.get_views}}
+        </div>
+        <div class="author">
+        <p style="float:right;">
+            Author: <a href="https://t.me/reikooff">{{ post.author|linebreaksbr }}</a></p>
+        </div>
+      </div>
        <hr>
       <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+<h3 id="bottom">Comments</h3>
 {% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
     <div class="comment">
@@ -46,12 +59,15 @@
 {% empty %}
     <p style="margin-top:20px">No comments here yet :(</p>
 {% endfor %}
-  
   </div>
 </div>
 <div class="right_part">
+    <p class="category_title">Topic: {{post.topic}}</p>
+    {% for post in post.get_related_posts%}
+        <div class="similar_post"><a href={% url 'post_detail' post.pk %}>{{post.title}}</a></div>
+        <hr>
+    {%endfor%}
 
 </div>
 
-  
 {% endblock content %}

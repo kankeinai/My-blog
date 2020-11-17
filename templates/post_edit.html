@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div class='new_post'>
-        <h2>New post</h2>
+        <h2>New post – <a href={% url 'add_topic' %}>New topic?</a></h2>
         <form method="POST" class="post-form">
             {% csrf_token %}
             {{form.media}}

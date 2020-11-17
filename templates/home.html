@@ -6,9 +6,10 @@
     <div class="post-entry">
       <h2 ><a class="title", href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
       <p class="content">{{ post.details |linebreaksbr }}</p>
-      <a href="{% url 'post_detail' pk=post.pk %}" class="title">Comments: {{ post.approved_comments.count }}</a>
+      <a href="{% url 'post_detail' pk=post.pk %}" class="title">Comments: {{ post.approved_comments.count }}, Views: {{ post.views}}</a>
     </div>
   {% empty%}
-    <p style="margin-top:20px">No post here yet :(</p>
+    <p style="margin-top:20px; margin-left:40px">No post here yet :(</p>
   {% endfor %}
+  {% include "pagination.html" with page=posts %}
 {% endblock content %}
