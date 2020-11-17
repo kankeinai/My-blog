@@ -67,13 +67,14 @@ a.title:hover {
 .post-form textarea,
 .post-form input {
   width: 100%;
+  height: 40px;
 }
 form{
   width:90%
 }
 .new_post {
   position: relative;
-  width: 50%;
+  width: 45%;
   top: 10%;
   left:30%;
   padding-top: 20px;
@@ -126,9 +127,8 @@ form{
 .tools {
   position: fixed;
   bottom: 10px;
-  right: 32%;
+  right: 33%;
   padding-top: 20px;
-  float: right;
 }
 a.btn.btn-default {
   text-align: center;
