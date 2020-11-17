@@ -3,10 +3,9 @@
 <div class="post-entry">
   <h2>
     <a class="title" , href="{% url 'post_detail' post.pk %}"
-      >{{ post.title }}</a
-    >
+      >{{ post.title }}</a>
   </h2>
-  <p>{{ post.topic}}</p>
+  <p><a href="{% url 'topic_list' topic=post.topic%}"><i>{{post.topic}}</i></a></p>
   <p class="content">{{ post.details |linebreaksbr }}</p>
   <a href="{% url 'post_detail' pk=post.pk %}" class="title"
     >Comments: {{ post.approved_comments.count }}, Views: {{ post.views}}</a

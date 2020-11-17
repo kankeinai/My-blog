@@ -44,7 +44,7 @@
 {% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
     <div class="comment">
-        <div class="date">
+        <div class="comment_date">
             {{ comment.created_date }}
             {% if not comment.approved_comment %}
                 <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>

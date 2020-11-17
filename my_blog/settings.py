@@ -137,8 +137,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'entities': False,
-        'width': "auto",
-        'height': "auto",
+        'width': "1000px",
+        'height': "500px",
         'entities_greek': False,
         'entities_latin': False,
         'skin': 'moono',
